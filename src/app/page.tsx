@@ -8,8 +8,8 @@ export default function Home() {
       
       <div className="max-w-6xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center my-auto">
         
-        {/* IMAGE ÉPURÉE SANS BORDURES NI CONTOURS */}
-        <div className="lg:col-span-5 flex justify-center">
+        {/* IMAGE DE PROFIL */}
+        <div className="lg:col-span-5 flex justify-center order-1 lg:order-1">
           <img
             src={creatorData.avatarUrl}
             alt={creatorData.name}
@@ -17,8 +17,8 @@ export default function Home() {
           />
         </div>
 
-        {/* DESCRIPTION + BOUTONS */}
-        <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+        {/* CONTENU & BOUTONS */}
+        <div className="lg:col-span-7 space-y-6 text-center lg:text-left order-2 lg:order-2">
           
           <div>
             <div className="flex items-center justify-center lg:justify-start gap-2 mb-1">
@@ -33,7 +33,7 @@ export default function Home() {
           </div>
 
           {/* STATS */}
-          <div className="flex justify-center lg:justify-start gap-6 pt-2 pb-2">
+          <div className="flex justify-center lg:justify-start gap-6 pt-1 pb-1">
             <div className="flex items-center gap-2">
               <Flame className="w-5 h-5 text-[#FFE135]" />
               <span className="font-black text-xl text-white">{creatorData.tiktokCount}</span>
@@ -46,8 +46,10 @@ export default function Home() {
             </div>
           </div>
 
-          {/* BOUTONS D'ACTION */}
-          <QualificationFlow creator={creatorData} />
+          {/* BOUTON D'ACTION ET FORMULAIRE DEPLOYABLE */}
+          <div className="pt-2">
+            <QualificationFlow creator={creatorData} />
+          </div>
 
         </div>
 
