@@ -56,7 +56,7 @@ export default function Home() {
       </div>
 
       <footer className="text-center text-slate-500 text-xs pt-8">
-        <p>© {creatorData.name} • Propulsé par Ckliko</p>
+        <p>© {creatorData.name}</p>
       </footer>
 
     </main>
