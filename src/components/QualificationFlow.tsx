@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { LeadType, LeadData, CreatorProfile } from '@/types';
-import { Megaphone, Handshake, Check, Send } from 'lucide-react';
+import { Megaphone, Handshake, Check, Send, Sparkles } from 'lucide-react';
 
 const BUDGET_OPTIONS = [
   "50.000 - 150.000 FCFA",
@@ -38,23 +38,31 @@ export const QualificationFlow = ({ creator }: { creator: CreatorProfile }) => {
     const text = `Bonjour ${creator.name},%0A%0A` +
       `*Demande:* ${typeLabel}%0A` +
       `*Nom/Entreprise:* ${leadData.nom} (${leadData.entreprise})%0A` +
-      `*Budget sélectionné:* ${leadData.budget}%0A` +
-      `*Détails du projet:* ${leadData.message}`;
+      `*Budget:* ${leadData.budget}%0A` +
+      `*Projet:* ${leadData.message}`;
 
     window.open(`https://wa.me/${creator.whatsappNumber}?text=${text}`, '_blank');
   };
 
   return (
-    <div className="w-full max-w-md mx-auto">
-      {/* ÉTAPE 1 : SELECTION DU BESOIN */}
+    <div className="w-full">
       {step === 1 && (
-        <div className="space-y-3">
-          <p className="text-sm font-semibold text-slate-200 text-center mb-2">
-            Sélectionnez votre objectif :
-          </p>
+        <div className="space-y-4">
+          
+          {/* INCITATION AU CALL-TO-ACTION */}
+          <div className="bg-[#0A1128] p-4 rounded-2xl border border-slate-800 text-center">
+            <p className="text-[#FFE135] font-extrabold text-sm md:text-base flex items-center justify-center gap-2">
+              <Sparkles className="w-4 h-4" />
+              Prêt à booster la visibilité de votre marque ?
+            </p>
+            <p className="text-slate-400 text-xs mt-1">
+              Sélectionnez une option ci-dessous pour démarrer directement votre projet sur WhatsApp.
+            </p>
+          </div>
+
           <button
             onClick={() => selectType('publicite')}
-            className="w-full bg-[#FFE135] hover:bg-[#ebd028] text-[#0A1128] font-extrabold py-4 px-5 rounded-2xl flex items-center justify-center gap-3 text-base shadow-lg shadow-[#FFE135]/10 active:scale-95 transition-all"
+            className="w-full btn-banana-gradient font-black py-4 px-5 rounded-2xl flex items-center justify-center gap-3 text-base cursor-pointer"
           >
             <Megaphone className="w-5 h-5" />
             Demander une Publicité
@@ -62,7 +70,7 @@ export const QualificationFlow = ({ creator }: { creator: CreatorProfile }) => {
 
           <button
             onClick={() => selectType('partenariat')}
-            className="w-full bg-[#FFE135] hover:bg-[#ebd028] text-[#0A1128] font-extrabold py-4 px-5 rounded-2xl flex items-center justify-center gap-3 text-base shadow-lg shadow-[#FFE135]/10 active:scale-95 transition-all"
+            className="w-full btn-banana-gradient font-black py-4 px-5 rounded-2xl flex items-center justify-center gap-3 text-base cursor-pointer"
           >
             <Handshake className="w-5 h-5" />
             Proposer un Partenariat
@@ -70,16 +78,11 @@ export const QualificationFlow = ({ creator }: { creator: CreatorProfile }) => {
         </div>
       )}
 
-      {/* ÉTAPE 2 : SELECTION DU BUDGET */}
       {step === 2 && (
-        <div className="bg-[#101D42] p-5 rounded-2xl border border-slate-700/60 shadow-xl space-y-4">
+        <div className="space-y-4">
           <div className="flex justify-between items-center border-b border-slate-700 pb-2">
-            <span className="text-xs font-bold text-[#FFE135] uppercase">
-              Étape 2/3 : Votre Budget
-            </span>
-            <button onClick={() => setStep(1)} className="text-slate-400 text-xs underline">
-              Retour
-            </button>
+            <span className="text-xs font-bold text-[#FFE135] uppercase">Étape 2/3 : Budget prévu</span>
+            <button onClick={() => setStep(1)} className="text-slate-400 text-xs underline cursor-pointer">Retour</button>
           </div>
 
           <div className="grid grid-cols-1 gap-2">
@@ -87,30 +90,25 @@ export const QualificationFlow = ({ creator }: { creator: CreatorProfile }) => {
               <button
                 key={b}
                 onClick={() => selectBudget(b)}
-                className="w-full text-left bg-[#0A1128] hover:border-[#FFE135] border border-slate-700 p-3 rounded-xl text-sm font-semibold text-white transition-all flex justify-between items-center"
+                className="w-full text-left bg-[#0A1128] hover:border-[#FFE135] border border-slate-700 p-3.5 rounded-xl text-sm font-semibold text-white transition-all flex justify-between items-center cursor-pointer"
               >
                 {b}
-                <Check className="w-4 h-4 text-[#FFE135] opacity-0 hover:opacity-100" />
+                <Check className="w-4 h-4 text-[#FFE135]" />
               </button>
             ))}
           </div>
         </div>
       )}
 
-      {/* ÉTAPE 3 : FORMULAIRE FINAL */}
       {step === 3 && (
-        <form onSubmit={handleSubmit} className="bg-[#101D42] p-5 rounded-2xl border border-slate-700 shadow-xl space-y-3">
+        <form onSubmit={handleSubmit} className="space-y-3">
           <div className="flex justify-between items-center border-b border-slate-700 pb-2">
-            <span className="text-xs font-bold text-[#FFE135] uppercase">
-              Dernière étape : Vos infos
-            </span>
-            <button onClick={() => setStep(2)} className="text-slate-400 text-xs underline">
-              Modifier budget
-            </button>
+            <span className="text-xs font-bold text-[#FFE135] uppercase">Étape 3/3 : Coordonnées</span>
+            <button onClick={() => setStep(2)} className="text-slate-400 text-xs underline cursor-pointer">Modifier budget</button>
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-300 mb-1">Votre Nom / Prénom *</label>
+            <label className="block text-xs font-medium text-slate-300 mb-1">Votre Nom *</label>
             <input
               required
               type="text"
@@ -138,7 +136,7 @@ export const QualificationFlow = ({ creator }: { creator: CreatorProfile }) => {
             <textarea
               required
               rows={2}
-              placeholder="Ex: Placement de produit dans la prochaine vidéo..."
+              placeholder="Description rapide..."
               value={leadData.message}
               onChange={(e) => setLeadData({ ...leadData, message: e.target.value })}
               className="w-full bg-[#0A1128] border border-slate-700 rounded-xl p-3 text-white text-sm focus:outline-none focus:border-[#FFE135]"
@@ -147,7 +145,7 @@ export const QualificationFlow = ({ creator }: { creator: CreatorProfile }) => {
 
           <button
             type="submit"
-            className="w-full bg-[#FFE135] text-[#0A1128] font-black py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 text-sm shadow-md active:scale-95 transition-all"
+            className="w-full btn-banana-gradient font-black py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 text-sm cursor-pointer"
           >
             <Send className="w-4 h-4" />
             Envoyer sur WhatsApp

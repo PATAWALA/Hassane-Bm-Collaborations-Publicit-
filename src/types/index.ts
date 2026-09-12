@@ -11,7 +11,9 @@ export interface LeadData {
 export interface CreatorProfile {
   name: string;
   handle: string;
+  bio: string;
   tiktokCount: string;
   facebookCount: string;
   whatsappNumber: string;
+  avatarUrl: string;
 }
