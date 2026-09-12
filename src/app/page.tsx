@@ -4,22 +4,20 @@ import { Flame, Users, CheckCircle2 } from 'lucide-react';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#0A1128] text-white flex flex-col justify-between p-4 md:p-8 lg:p-12 font-sans max-w-6xl mx-auto">
+    <main className="min-h-screen w-full bg-[#0A1128] text-white flex flex-col justify-between p-6 md:p-12 font-sans">
       
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center my-auto">
+      <div className="max-w-6xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center my-auto">
         
-        {/* IMAGE GROSSE ET CLAIRE (Gagnante sur mobile et desktop) */}
-        <div className="lg:col-span-5">
-          <div className="relative w-full max-w-sm mx-auto aspect-square rounded-3xl overflow-hidden border-4 border-[#FFE135] shadow-2xl">
-            <img
-              src={creatorData.avatarUrl}
-              alt={creatorData.name}
-              className="w-full h-full object-cover"
-            />
-          </div>
+        {/* IMAGE ÉPURÉE SANS BORDURES NI CONTOURS */}
+        <div className="lg:col-span-5 flex justify-center">
+          <img
+            src={creatorData.avatarUrl}
+            alt={creatorData.name}
+            className="w-full max-w-xs md:max-w-sm aspect-square object-contain"
+          />
         </div>
 
-        {/* DESCRIPTION + BOUTONS STRATÉGIQUES */}
+        {/* DESCRIPTION + BOUTONS */}
         <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
           
           <div>
@@ -34,7 +32,7 @@ export default function Home() {
             </p>
           </div>
 
-          {/* STATS RAPIDES */}
+          {/* STATS */}
           <div className="flex justify-center lg:justify-start gap-6 pt-2 pb-2">
             <div className="flex items-center gap-2">
               <Flame className="w-5 h-5 text-[#FFE135]" />
@@ -48,7 +46,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* TUNNEL DE BOUTONS ACCESSIBLE DIRECTEMENT */}
+          {/* BOUTONS D'ACTION */}
           <QualificationFlow creator={creatorData} />
 
         </div>
